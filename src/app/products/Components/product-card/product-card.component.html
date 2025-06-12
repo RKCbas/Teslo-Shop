@@ -1,18 +1,35 @@
-<div class="card bg-base-100 shadow-sm mx-2 sm:mx-0 animate-fadeIn">
+<div
+  class="card bg-base-100 shadow-sm mx-2 sm:mx-0 animate-fadeIn transition-transform hover:scale-[1.02] hover:shadow-lg h-full
+"
+  [routerLink]="['/product', product().slug]"
+>
   <figure>
     <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
+      [src]="imageUrl()"
+      [alt]="product().title"
     />
   </figure>
   <div class="card-body pt-4">
-    <h2 class="card-title">Card Title</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-end">
-      <a class="btn btn-primary" [routerLink]="['/product', 't-shirt']">Ver Producto</a>
+    <h2 class="card-title font-montserrat text-primary">
+      {{ product().title }}
+    </h2>
+    <p>{{ product().description | slice : 0 : 100 }}...</p>
+    <div class="card-actions justify-end mt-1">
+      @for (tag of product().tags; track tag) {
+      <div class="badge badge-outline">{{ tag }}</div>
+      }
+
+      <div
+        class="badge"
+        [ngClass]="{
+          'badge-neutral': product().gender === 'unisex',
+          'badge-primary': product().gender === 'men',
+          'badge-accent': product().gender === 'women',
+          'badge-warning': product().gender === 'kid'
+        }"
+      >
+        {{ product().gender }}
+      </div>
     </div>
   </div>
 </div>

@@ -1,13 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+
 import { rxResource } from '@angular/core/rxjs-interop'
 
 import { ProductsService } from '@products/services/products.service';
-import { ProductCardComponent } from '@products/Components/product-card/product-card.component';
+import { ProductsListComponent } from '@products/Components/products-list/products-list.component';
+import { Product } from '@products/interfaces/product.interface';
 
 
 @Component({
   selector: 'app-home-page',
-  imports: [ProductCardComponent],
+  imports: [
+    ProductsListComponent
+],
   templateUrl: './home-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -21,5 +25,16 @@ export class HomePageComponent {
       return this.productsService.getProducts({});
     }
   })
+
+  products = computed<Product[]>(() => {
+    if (!this.productsResource.hasValue()) return [];
+    return this.productsResource.value().products
+  });
+
+  isEmpty = computed<boolean>(() => {
+    if (!this.productsResource.hasValue()) return false;
+    return this.productsResource.value().products.length === 0;
+  });
+
 
 }

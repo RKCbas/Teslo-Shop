@@ -1,0 +1,37 @@
+
+@if (isLoading()) {
+<div class="flex justify-center items-center h-36 text-center">
+  <pre
+    class="font-montserrat text-2xl"
+  >Cargando <span class="loading loading-dots loading-xl"></span></pre>
+</div>
+}
+<!--  -->
+@else if (errorMessage()) {
+<div class="flex justify-center items-center h-72 sm:h-96 mx-4">
+  <div class="row">
+    <h2 class="text-2xl font-montserrat">Error:</h2>
+    <pre class="whitespace-pre-wrap break-words text-xs sm:text-base">{{
+      errorMessage() | json
+    }}</pre>
+  </div>
+</div>
+}
+<!--  -->
+@else if (isEmpty()) {
+<div class="flex justify-center items-center h-96 text-center">
+  <p>No hay productos</p>
+</div>
+}
+<!--  -->
+@else {
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2"
+>
+  @for (product of products(); track $index) {
+  <product-card
+    [product]="product"
+  />
+  }
+</div>
+}
