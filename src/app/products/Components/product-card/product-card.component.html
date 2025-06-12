@@ -5,7 +5,7 @@
 >
   <figure>
     <img
-      [src]="imageUrl()"
+      [src]="product().images | productImage "
       [alt]="product().title"
     />
   </figure>
@@ -14,7 +14,7 @@
       {{ product().title }}
     </h2>
     <p>{{ product().description | slice : 0 : 100 }}...</p>
-    <div class="card-actions justify-end mt-1">
+    <div class="card-actions justify-end mt-4">
       @for (tag of product().tags; track tag) {
       <div class="badge badge-outline">{{ tag }}</div>
       }
