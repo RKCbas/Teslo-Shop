@@ -1,5 +1,5 @@
 <h1 class="text-3xl font-bold font-montserrat ml-2.5 sm:ml-0 mb-3">
-  Productos para {{gender() | genderText }}
+  Productos para <span class="text-accent">{{gender() | genderText }}</span>
 </h1>
 <!-- <h2 class="text-xl mb-5 ml-3 sm:ml-0">Para {{gender()}}</h2> -->
 
@@ -8,4 +8,9 @@
   [errorMessage]="productsResource.error()"
   [products]="productsResource.value()?.products"
   [hasValue]="productsResource.hasValue()"
+/>
+
+<app-pagination
+[totalPages]="productsResource.value()?.pages ?? 0"
+[currentPage]="paginationService.currentPage()"
 />
