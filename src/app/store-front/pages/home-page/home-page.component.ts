@@ -4,12 +4,15 @@ import { rxResource } from '@angular/core/rxjs-interop'
 
 import { ProductsService } from '@products/services/products.service';
 import { ProductsListComponent } from '@products/Components/products-list/products-list.component';
+import { PaginationComponent } from '@shared/components/pagination/pagination.component';
+
 
 
 @Component({
   selector: 'app-home-page',
   imports: [
-    ProductsListComponent
+    ProductsListComponent,
+    PaginationComponent
 ],
   templateUrl: './home-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,6 +3,8 @@
 </h1>
 <h2 class="text-xl mb-5 ml-3 sm:ml-0">Para todos los gustos</h2>
 
+<app-pagination [totalPages]="productsResource.value()?.pages ?? 0" />
+
 <products-list
   [isLoading]="productsResource.isLoading()"
   [errorMessage]="productsResource.error()"
