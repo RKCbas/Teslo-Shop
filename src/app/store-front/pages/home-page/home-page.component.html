@@ -10,4 +10,7 @@
   [hasValue]="productsResource.hasValue()"
 />
 
-<app-pagination [totalPages]="productsResource.value()?.pages ?? 0" />
+<app-pagination
+[totalPages]="productsResource.value()?.pages ?? 0"
+[currentPage]="currentPage()"
+/>
