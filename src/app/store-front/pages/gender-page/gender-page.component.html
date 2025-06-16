@@ -1,1 +1,11 @@
-<p>gender-page works!</p>,
+<h1 class="text-3xl font-bold font-montserrat ml-2.5 sm:ml-0 mb-3">
+  Productos para {{gender() | genderText }}
+</h1>
+<!-- <h2 class="text-xl mb-5 ml-3 sm:ml-0">Para {{gender()}}</h2> -->
+
+<products-list
+  [isLoading]="productsResource.isLoading()"
+  [errorMessage]="productsResource.error()"
+  [products]="productsResource.value()?.products"
+  [hasValue]="productsResource.hasValue()"
+/>

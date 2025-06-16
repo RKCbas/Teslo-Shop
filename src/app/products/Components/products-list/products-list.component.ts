@@ -14,9 +14,9 @@ import { JsonPipe } from '@angular/common';
 })
 export class ProductsListComponent {
 
-  products = input.required<Product[]>();
+  products = input.required<Product[] | undefined>();
 
   errorMessage = input<string | unknown | null>();
   isLoading = input<boolean>(false);
-  isEmpty = input<boolean>(false);
+  hasValue = input<boolean>(false);
 }

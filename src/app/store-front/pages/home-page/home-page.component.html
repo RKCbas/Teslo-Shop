@@ -6,7 +6,6 @@
 <products-list
   [isLoading]="productsResource.isLoading()"
   [errorMessage]="productsResource.error()"
-  [products]="products()"
-  [isEmpty]="isEmpty()"
-
+  [products]="productsResource.value()?.products"
+  [hasValue]="productsResource.hasValue()"
 />
