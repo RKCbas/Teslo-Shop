@@ -14,9 +14,19 @@
     opacity: 1;
   }
 }
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @theme {
   --font-montserrat: "Montserrat", "sans-serif";
   --animate-fadeIn: fadeIn 0.3s ease-in-out;
+  --animate-fadeOut: fadeOut 0.3s ease-in-out;
 }
 @plugin "daisyui" {
   themes: night --default;
