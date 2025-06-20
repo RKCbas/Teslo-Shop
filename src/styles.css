@@ -15,10 +15,10 @@
   }
 }
 @keyframes fadeOut {
-  0% {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0;
   }
 }
@@ -26,7 +26,7 @@
 @theme {
   --font-montserrat: "Montserrat", "sans-serif";
   --animate-fadeIn: fadeIn 0.3s ease-in-out;
-  --animate-fadeOut: fadeOut 0.3s ease-in-out;
+  --animate-fadeOut: fadeOut 1s ease-in-out;
 }
 @plugin "daisyui" {
   themes: night --default;

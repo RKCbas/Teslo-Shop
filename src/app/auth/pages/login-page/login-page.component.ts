@@ -10,7 +10,7 @@ import { FormUtils } from 'src/app/utils/formUtils';
     RouterLink,
     ReactiveFormsModule,
     NgClass
-],
+  ],
   templateUrl: './login-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -22,7 +22,7 @@ export class LoginPageComponent {
   hasError = signal(false);
   isPosting = signal(false);
 
-  fadeState = 'animate-fadeIn';
+  fadeState = signal('');
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(FormUtils.emailPattern)], []],
@@ -31,12 +31,17 @@ export class LoginPageComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) {
+      this.fadeState.set('animate-fadeIn')
+
       this.hasError.set(true);
+
       setTimeout(() => {
-        this.fadeState = 'animate-fadeOut';
-        this.hasError.set(false)
+        this.fadeState.set('animate-fadeOut');
+        setTimeout(() => {
+          this.hasError.set(false);
+        }, 1000);
       }, 2000)
-      this.fadeState = 'animate-fadeIn';
+
     }
 
     const { email = '', password = '' } = this.loginForm.value;
