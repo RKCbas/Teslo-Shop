@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'front-navbar',
@@ -10,4 +11,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './front-navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FrontNavbarComponent { }
+export class FrontNavbarComponent {
+
+  authService = inject(AuthService);
+
+
+
+}
