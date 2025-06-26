@@ -15,7 +15,7 @@ export class AuthService {
 
   private readonly _authStatus = signal<AuthStatus>('checking');
   private readonly _user = signal<User | null>(null);
-  private readonly _token = signal<string | null>(null);
+  private readonly _token = signal<string | null>(localStorage.getItem('token'));
 
   private readonly http = inject(HttpClient);
 
@@ -55,9 +55,9 @@ export class AuthService {
     }
 
     return this.http.get<AuthResponse>(`${baseUrl}/auth/check-status`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      // headers: {
+      //   Authorization: `Bearer ${token}`
+      // }
     }).pipe(
       map(resp => this.handleAuthSuccess(resp)),
       catchError((error: any) => this.handleAuthError(error))

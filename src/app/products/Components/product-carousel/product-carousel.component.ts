@@ -15,12 +15,12 @@ import { ProductImagePipe } from '@products/pipes/product-image.pipe';
   ],
   templateUrl: './product-carousel.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: `
-  .swiper{
-    width: 100%;
-    height: 500px;
-  }
-  `,
+  // styles: `
+  // .swiper{
+  //   width: 100%;
+  //   height: 500px;
+  // }
+  // `,
 })
 export class ProductCarouselComponent implements AfterViewInit {
 

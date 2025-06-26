@@ -1,14 +1,14 @@
 <!-- Slider main container -->
-<div class="swiper" #swiperDiv>
+<div class="swiper h-75 sm:h-125 w-full " #swiperDiv>
   <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper ">
     <!-- Slides -->
     @for (image of images(); track $index) {
     <div class="swiper-slide">
       <img
         [src]="image | productImage"
         alt="Imagen del producto"
-        class="w-full h-full object-cover rounded-2xl animate-fadeIn"
+        class="w-full h-75 sm:h-full object-cover rounded-2xl animate-fadeIn"
       />
     </div>
     }
