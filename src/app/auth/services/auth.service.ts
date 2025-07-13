@@ -15,7 +15,7 @@ export class AuthService {
 
   private readonly _authStatus = signal<AuthStatus>('checking');
   private readonly _user = signal<User | null>(null);
-  private readonly _token = signal<string | null>(localStorage.getItem('token'));
+  private readonly _token = signal<string | null>(localStorage.getItem('tokenT'));
 
   private readonly http = inject(HttpClient);
 
@@ -46,8 +46,19 @@ export class AuthService {
     )
   }
 
+  register(fullName:string, email:string, password:string){
+    return this.http.post<AuthResponse>(`${baseUrl}/auth/register`, {
+      fullName: fullName,
+      email: email,
+      password: password
+    }).pipe(
+      map(resp => this.handleAuthSuccess(resp)),
+      catchError((error: any) => this.handleAuthError(error))
+    )
+  }
+
   checkStatus(): Observable<boolean> {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('tokenT')
 
     if (!token) {
       this.logout();
@@ -56,7 +67,7 @@ export class AuthService {
 
     return this.http.get<AuthResponse>(`${baseUrl}/auth/check-status`, {
       // headers: {
-      //   Authorization: `Bearer ${token}`
+      //   Authorization: `Bearer ${tokenT}`
       // }
     }).pipe(
       map(resp => this.handleAuthSuccess(resp)),
@@ -70,7 +81,7 @@ export class AuthService {
     this._user.set(null);
     this._token.set(null);
 
-    localStorage.removeItem('token')
+    localStorage.removeItem('tokenT')
   }
 
   private handleAuthSuccess({ token, user }: AuthResponse): boolean {
@@ -78,7 +89,7 @@ export class AuthService {
     this._authStatus.set('authenticated');
     this._token.set(token);
 
-    localStorage.setItem('token', token)
+    localStorage.setItem('tokenT', token)
 
     return true
   }

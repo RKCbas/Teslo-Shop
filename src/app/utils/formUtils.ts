@@ -10,7 +10,8 @@ async function sleep(){
 
 export class FormUtils {
   // Expresiones regulares
-  static readonly namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
+  // static readonly namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
+  static readonly namePattern = '^([A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+){0,4}$';
   static readonly emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   static readonly notOnlySpacesPattern = '^[a-zA-Z0-9]+$';
 
