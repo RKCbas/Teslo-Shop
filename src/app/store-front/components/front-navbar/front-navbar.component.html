@@ -91,16 +91,16 @@
   <!--  -->
   <div class="navbar-end">
     @if (authService.authStatus() === 'authenticated') {
-    <button class="btn btn-ghost">
+    <p class="font-montserrat mr-1 cursor-default">
       {{ authService.user()?.fullName }}
-    </button>
-    <button class="btn btn-sm btn-error" (click)="authService.logout()">
+    </p>
+    <button class="btn btn-sm btn-error mx-3" (click)="authService.logout()">
       Salir
     </button>
     }
     <!--  -->
     @else if(authService.authStatus() === 'not-authenticated'){
-    <a routerLink="/auth/login" class="btn btn-secondary">Login</a>
+    <a routerLink="/auth/login" class="btn btn-secondary mx-3">Login</a>
     }
     <!--  -->
     @else {
