@@ -1,3 +1,12 @@
-<p>admin-dashboard-layout works!</p>,
+<div
+  class="bg-slate-800 overflow-y-hidden w-screen h-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white flex flex-col relative"
+>
+  <admin-side-menu />
 
-<router-outlet/>
+  <div class="ml-0 sm:ml-[240px] flex flex-col flex-1 h-full text-slate-800 pt-5 px-5">
+
+    <router-outlet />
+
+  </div>
+
+</div>

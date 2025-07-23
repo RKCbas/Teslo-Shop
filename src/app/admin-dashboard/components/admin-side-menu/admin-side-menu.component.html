@@ -1,0 +1,25 @@
+<admin-side-menu-button />
+
+<!--
+      'translate-x-0': El menú está visible (sin desplazamiento horizontal).
+      '-translate-x-full': El menú está oculto (desplazado completamente a la izquierda).
+      'sm:translate-x-0 sm:block': En pantallas pequeñas (sm), el menú siempre está visible y en bloque.
+-->
+
+<div
+  id="menu"
+  class="transform w-[240px] bg-gray-900 text-slate-300 fixed left-0 top-0 h-screen overflow-y-auto z-10 transition-transform duration-300"
+  [ngClass]="{
+        'translate-x-0': sideMenuService.isSideMenuOpen(),
+        '-translate-x-full': !sideMenuService.isSideMenuOpen(),
+        'sm:translate-x-0 sm:block': true,
+    }"
+>
+
+  <div class="pt-8 sm:pt-0">
+    <admin-side-menu-header/>
+  </div>
+
+  <admin-side-menu-options/>
+
+</div>

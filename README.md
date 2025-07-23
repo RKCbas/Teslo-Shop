@@ -1,6 +1,6 @@
 # TesloShop
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6. and for the styles used [Tailwind](https://tailwindcss.com/docs/installation/framework-guides) and for the templates components themes and layouts used [daisy UI](https://daisyui.com/docs/install/) and for the icons used [Iconify](https://icon-sets.iconify.design).
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6. and for the styles used [Tailwind](https://tailwindcss.com/docs/installation/framework-guides) and for the templates components themes and layouts used [daisy UI](https://daisyui.com/docs/install/) and for the icons used [Iconify](https://icon-sets.iconify.design) and [FontAwesome](https://fontawesome.com).
 Example deployed at:
 
 - pending
@@ -8,6 +8,7 @@ Example deployed at:
 ## Initialize the project
 
 1. Clone the repository
+
 2. install the node dependencies:
 
    ```bash
@@ -15,10 +16,22 @@ Example deployed at:
    ```
 
 3. generate the `.env` from the ``env.template`
+
 4. Run the script to generate the environments:
 
-  ```bash
+   ```bash
     npm run set-envs
+   ```
+
+5. The environment format should be something like this:
+
+  ```typescript
+    export const environment = {
+      baseUrl: 'API_URL_HERE',
+      companyName: 'Teslo',
+      companyName2: 'Shop',
+      companySlogan: 'Insertar slogan aquí',
+    };
   ```
 
 ## Development server

@@ -13,11 +13,14 @@ const baseUrl = environment.baseUrl;
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  private readonly http = inject(HttpClient);
+
   private readonly _authStatus = signal<AuthStatus>('checking');
   private readonly _user = signal<User | null>(null);
   private readonly _token = signal<string | null>(localStorage.getItem('tokenT'));
 
-  private readonly http = inject(HttpClient);
+  user = computed(() => this._user());
+  token = computed(() => this._token());
 
   // This rxResource is executed when the service is injected
   checkStatusResource = rxResource({
@@ -33,8 +36,6 @@ export class AuthService {
 
   });
 
-  user = computed(() => this._user());
-  token = computed(() => this._token());
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.post<AuthResponse>(`${baseUrl}/auth/login`, {
