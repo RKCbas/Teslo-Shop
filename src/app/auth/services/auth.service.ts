@@ -10,6 +10,12 @@ import { User } from '@auth/interfaces/user.interface';
 type AuthStatus = 'checking' | 'authenticated' | 'not-authenticated';
 const baseUrl = environment.baseUrl;
 
+interface CheckStatusCache {
+  TS: number,
+  resp: AuthResponse
+}
+
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
@@ -19,7 +25,10 @@ export class AuthService {
   private readonly _user = signal<User | null>(null);
   private readonly _token = signal<string | null>(localStorage.getItem('tokenT'));
 
+  private readonly _checkStatusCache = signal<CheckStatusCache | null>(null);
+
   user = computed(() => this._user());
+  isAdmin = computed(() => this._user()?.roles.includes('admin') ?? false);
   token = computed(() => this._token());
 
   // This rxResource is executed when the service is injected
@@ -59,11 +68,18 @@ export class AuthService {
   }
 
   checkStatus(): Observable<boolean> {
-    const token = localStorage.getItem('tokenT')
 
-    if (!token) {
+    if (!this.token()) {
       this.logout();
       return of(false);
+    }
+
+    if( this._checkStatusCache() ){
+      const oneHR = 3600_000
+      if( (Date.now() - this._checkStatusCache()!.TS) < oneHR ){
+        this.handleAuthSuccess(this._checkStatusCache()!.resp);
+        return of(true);
+      }
     }
 
     return this.http.get<AuthResponse>(`${baseUrl}/auth/check-status`, {
@@ -83,14 +99,24 @@ export class AuthService {
     this._token.set(null);
 
     localStorage.removeItem('tokenT')
+
+    this._checkStatusCache.set(null)
   }
 
-  private handleAuthSuccess({ token, user }: AuthResponse): boolean {
+  private handleAuthSuccess(resp: AuthResponse): boolean {
+
+    const { token, user } = resp
+
     this._user.set(user);
     this._authStatus.set('authenticated');
     this._token.set(token);
 
     localStorage.setItem('tokenT', token)
+
+    this._checkStatusCache.set({
+      resp: resp,
+      TS: Date.now()
+    })
 
     return true
   }
