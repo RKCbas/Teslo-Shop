@@ -7,7 +7,7 @@ import { FrontNavbarComponent } from "../../components/front-navbar/front-navbar
   imports: [
     RouterOutlet,
     FrontNavbarComponent
-],
+  ],
   templateUrl: './store-front-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
