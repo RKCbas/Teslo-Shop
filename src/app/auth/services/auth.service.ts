@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 import { AuthResponse } from '@auth/interfaces/auth-response.interface';
 import { User } from '@auth/interfaces/user.interface';
@@ -51,6 +51,7 @@ export class AuthService {
       email: email,
       password: password,
     }).pipe(
+      tap(resp => this.saveAuthStatusCache(resp)),
       map(resp => this.handleAuthSuccess(resp)),
       catchError((error: any) => this.handleAuthError(error))
     )
@@ -62,6 +63,7 @@ export class AuthService {
       email: email,
       password: password
     }).pipe(
+      tap(resp => this.saveAuthStatusCache(resp)),
       map(resp => this.handleAuthSuccess(resp)),
       catchError((error: any) => this.handleAuthError(error))
     )
@@ -87,6 +89,7 @@ export class AuthService {
       //   Authorization: `Bearer ${tokenT}`
       // }
     }).pipe(
+      tap(resp => this.saveAuthStatusCache(resp)),
       map(resp => this.handleAuthSuccess(resp)),
       catchError((error: any) => this.handleAuthError(error))
     )
@@ -113,17 +116,19 @@ export class AuthService {
 
     localStorage.setItem('tokenT', token)
 
-    this._checkStatusCache.set({
-      resp: resp,
-      TS: Date.now()
-    })
-
     return true
   }
 
   private handleAuthError(error: any): Observable<boolean> {
     this.logout()
     return of(false)
+  }
+
+  private saveAuthStatusCache(resp: AuthResponse) {
+    this._checkStatusCache.set({
+      resp: resp,
+      TS: Date.now()
+    })
   }
 
 }

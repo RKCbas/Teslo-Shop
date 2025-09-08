@@ -64,8 +64,9 @@ export class LoginPageComponent {
 
     const { email = '', password = '' } = this.loginForm.value;
 
+    this.isPosting.set(true)
+
     this.authService.login(email!, password!).subscribe(isAuthenticated => {
-      this.isPosting.set(true)
 
       if (isAuthenticated) {
         this.router.navigateByUrl('/', { replaceUrl: true }  /*So the user will not be able to return to the login page*/)
