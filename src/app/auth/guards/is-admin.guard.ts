@@ -16,7 +16,7 @@ export const IsAdminGuard: CanMatchFn = async (
 
   if (authService.isAdmin()) return true
 
-  router.navigateByUrl('/');
+  router.navigateByUrl('/auth');
   return false;
 
 }

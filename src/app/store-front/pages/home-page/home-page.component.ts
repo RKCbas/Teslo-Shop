@@ -19,8 +19,8 @@ import { PaginationService } from '@shared/components/pagination/pagination.serv
 })
 export class HomePageComponent {
 
-  productsService = inject(ProductsService);
-  paginationService = inject(PaginationService)
+  private readonly productsService = inject(ProductsService);
+  readonly paginationService = inject(PaginationService)
 
   productsResource = rxResource({
     request: () => ({ page: this.paginationService.currentPage() - 1 }),
