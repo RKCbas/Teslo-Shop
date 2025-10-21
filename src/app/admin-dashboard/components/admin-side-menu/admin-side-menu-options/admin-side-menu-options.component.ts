@@ -33,13 +33,13 @@ export class AdminSideMenuOptionsComponent {
       route: '/admin/products',
       borderB: true
     },
-    {
-      icon: 'fa-solid fa-magnifying-glass',
-      label: 'Producto',
-      subLabel: 'navegación temporal',
-      route: '/admin/product/algo',
-      borderB: false
-    }
+    // {
+    //   icon: 'fa-solid fa-magnifying-glass',
+    //   label: 'Place Holder',
+    //   subLabel: 'navegación temporal',
+    //   route: '/admin/products',
+    //   borderB: false
+    // }
   ]
 
 }

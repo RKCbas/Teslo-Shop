@@ -10,7 +10,9 @@
   [hasValue]="productsResource.hasValue()"
 />
 
-<app-pagination
-[totalPages]="productsResource.value()?.pages ?? 0"
-[currentPage]="paginationService.currentPage()"
-/>
+<div class="mt-4 mb-10">
+  <app-pagination
+  [totalPages]="productsResource.value()?.pages ?? 0"
+  [currentPage]="paginationService.currentPage()"
+  />
+</div>

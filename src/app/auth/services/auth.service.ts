@@ -79,8 +79,7 @@ export class AuthService {
     if( this._checkStatusCache() ){
       const oneHR = 3600_000
       if( (Date.now() - this._checkStatusCache()!.TS) < oneHR ){
-        this.handleAuthSuccess(this._checkStatusCache()!.resp);
-        return of(true);
+        return of(this.handleAuthSuccess(this._checkStatusCache()!.resp));
       }
     }
 
