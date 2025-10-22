@@ -1,30 +1,30 @@
-<div id="logo" class="my-4 px-6 cursor-default">
-
+<div id="logo" class="my-4 px-6 cursor-default" [routerLink]="['/']">
   <h1 class="text-lg md:text-2xl font-bold text-white font-montserrat">
-    {{ envs.companyName }}<span class="text-blue-500">{{ ` | ${envs.companyName2}` }}</span>
+    {{ envs.companyName
+    }}<span class="text-blue-500">{{ ` | ${envs.companyName2}` }}</span>
   </h1>
 
   <p class="text-slate-500 text-sm">{{ envs.companySlogan }}</p>
-
 </div>
 
 <div id="profile" class="px-6 py-10">
-
   <p class="text-slate-500">Bienvenido</p>
 
   <p class="inline-flex space-x-2 items-center cursor-default">
-
     <span>
-      <svg class="rounded-full w-8 h-8" viewBox="0 0 24 24" fill="#ccc" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="7" r="5" />
-      <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
-    </svg>
-
+      <svg
+        class="rounded-full w-8 h-8"
+        viewBox="0 0 24 24"
+        fill="#ccc"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="12" cy="7" r="5" />
+        <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
+      </svg>
     </span>
 
-    <span class="text-sm md:text-base font-bold"> {{ user()?.fullName ?? 'Usuario no disponible' }} </span>
-
+    <span class="text-sm md:text-base font-bold">
+      {{ user()?.fullName ?? "Usuario no disponible" }}
+    </span>
   </p>
-
 </div>
-

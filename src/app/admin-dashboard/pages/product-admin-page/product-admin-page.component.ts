@@ -23,7 +23,6 @@ export class ProductAdminPageComponent {
     )
   )
 
-
   productResource = rxResource({
     request: () => ({ id: this.productId() }),
     loader: ({ request }) => {

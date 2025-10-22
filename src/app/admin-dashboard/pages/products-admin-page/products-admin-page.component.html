@@ -1,19 +1,37 @@
 <h1 class="text-2xl font-bold">Listado de productos</h1>
-<h3 class="text-lg">Total de productos
-  <span class="text-accent">{{ productsResource.value()?.count ?? 'Loading...' }}</span>
+<h3 class="text-lg">
+  Total de productos
+  <span class="text-accent">{{
+    productsResource.value()?.count ?? "Loading..."
+  }}</span>
 </h3>
 <div class="divider"></div>
 
 <div class="flex gap-2 items-center h-20">
-  <app-pagination [totalPages]="productsResource.value()?.pages ?? 0" [currentPage]="paginationService.currentPage()"/>
+  <app-pagination
+    [totalPages]="productsResource.value()?.pages ?? 0"
+    [currentPage]="paginationService.currentPage()"
+  />
 
-  <select title="Productos por pagina" class="select select-bordered w-32" #selectPerPage (change)="productsPerPage.set(+selectPerPage.value)">
+  <select
+    title="Productos por pagina"
+    class="select select-bordered w-32"
+    #selectPerPage
+    (change)="productsPerPage.set(+selectPerPage.value)"
+  >
     <option value="10">10</option>
     <option value="20">20</option>
     <option value="50">50</option>
     <option value="100">100</option>
   </select>
 
+  <div class="flex flex-1"></div>
+  <button class="btn btn-primary" routerLink="/admin/products/new">
+    Nuevo Producto
+  </button>
 </div>
 
-<product-table [navRoute]="'/admin/products'" [products]="productsResource.value()?.products ?? []"/>
+<product-table
+  [navRoute]="'/admin/products'"
+  [products]="productsResource.value()?.products ?? []"
+/>

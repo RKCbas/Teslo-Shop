@@ -33,23 +33,17 @@ export class FormUtils {
           if (errors['pattern'].requiredPattern === FormUtils.namePattern) {
             return "El nombre debe contener al menos un nombre y un apellido"
           }
-
           else if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
             return "El email ingresado no es válido"
           }
-
           else if (errors['pattern'].requiredPattern === FormUtils.notOnlySpacesPattern) {
             return "El campo no puede contener solo espacios"
           }
-
           return "El formato ingresado no es válido"
         case 'notEqual':
           return 'Los campos no son iguales'
         case 'emailTaken':
           return 'El email ya está en uso'
-        // case 'notStrider':
-        //   return 'El usuario strider ya esta registrado'
-
         default:
           return `error: ${key}`
       }

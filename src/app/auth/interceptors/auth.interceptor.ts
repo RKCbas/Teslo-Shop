@@ -14,14 +14,14 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) 
   const authToken = inject(AuthService).token();
   // Clone the request to add the authentication header.
 
-  const requiereAuth = UrlsWithAuth.some(url => req.url.includes(url));
+  // const requiereAuth = UrlsWithAuth.some(url => req.url.includes(url));
 
-  if (requiereAuth) {
+  // if (requiereAuth) {
     const newReq = req.clone({
       headers: req.headers.append('Authorization', `Bearer ${authToken}`),
     });
     return next(newReq);
-  }
+  // }
 
   // console.log(req.url)
 

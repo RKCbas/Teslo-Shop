@@ -91,6 +91,13 @@
   <!--  -->
   <div class="navbar-end">
     @if (authService.authStatus() === 'authenticated') {
+    <!--  -->
+    @if (authService.isAdmin()) {
+    <button class="btn text-accent mx-3" routerLink="/admin">
+      Panel Admin
+    </button>
+    }
+    <!--  -->
     <p class="font-montserrat mr-1 cursor-default">
       {{ authService.user()?.fullName }}
     </p>
