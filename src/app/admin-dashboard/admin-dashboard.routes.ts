@@ -6,7 +6,7 @@ import { IsAdminGuard } from "@auth/guards/is-admin.guard";
 
 
 
-export const AdminDashboardRoutes: Routes =[
+const AdminDashboardRoutes: Routes =[
   {
     path: '',
     component: AdminDashboardLayoutComponent,

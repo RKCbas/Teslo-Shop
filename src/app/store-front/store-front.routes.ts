@@ -4,7 +4,7 @@ import { GenderPageComponent } from "./pages/gender-page/gender-page.component";
 import { ProductPageComponent } from "./pages/product-page/product-page.component";
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 
-export const storeFrontRoutes: Routes = [
+const storeFrontRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./layouts/store-front-layout/store-front-layout.component'),

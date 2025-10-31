@@ -25,14 +25,14 @@ Example deployed at:
 
 5. The environment format should be something like this:
 
-  ```typescript
+   ```typescript
     export const environment = {
       baseUrl: 'API_URL_HERE',
       companyName: 'Teslo',
       companyName2: 'Shop',
       companySlogan: 'Insertar slogan aquí',
     };
-  ```
+   ```
 
 ## Development server
 
